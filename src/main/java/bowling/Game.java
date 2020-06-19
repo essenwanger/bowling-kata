@@ -21,11 +21,15 @@ public class Game {
 			throw new Exception(VALOR_INVALIDO);
 		}
 		Frame frame;
-		if(count==0) {
+		if(count==0 && pins<10) {
 			frame=new Frame();
 			frame.setRollOne(pins);
 			frames.add(frame);
 			count++;
+		}else if(count==0 && pins==10){
+			frame=new Frame();
+			frame.setRollOne(pins);
+			frames.add(frame);
 		}else {
 			frame=frames.get(frames.size()-1);
 			frame.setRollTwo(pins);
@@ -40,7 +44,15 @@ public class Game {
 			Frame frame = frames.get(numberFrame);
 			int totalFrame = frame.getRollOne() + frame.getRollTwo();
 			score+=totalFrame;
-			if(totalFrame==10 && frames.size()>(numberFrame+1)) {
+			if(frame.getRollOne() == 10 && frames.size()>(numberFrame+1)) {
+				Frame frameNext = frames.get(numberFrame+1);
+				score+=frameNext.getRollOne();
+				if(frameNext.getRollOne()==10 && frames.size()>(numberFrame+2)) {
+					Frame frameNextNext = frames.get(numberFrame+2);
+					score+=frameNextNext.getRollOne();
+				}
+				score+=frameNext.getRollTwo();
+			}else if(totalFrame==10 && frames.size()>(numberFrame+1)) {
 				Frame frameNext = frames.get(numberFrame+1);
 				score+=frameNext.getRollOne();
 			}

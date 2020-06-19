@@ -10,21 +10,21 @@ class TestGame {
 	//Dado Cuando Entonces
 	
 	@Test
-	void primerTiroNoDerriboNadaPuntuacion0() throws Exception {
+	void cuadro1_0_Puntuacion0() throws Exception {
 		Game game = new Game();
 		game.roll(0);
 		assertEquals(0, game.score());
 	}
 	
 	@Test
-	void primerTiroDerribo5Puntuacion5() throws Exception {
+	void cuadro1_5_Puntuacion5() throws Exception {
 		Game game = new Game();
 		game.roll(5);
 		assertEquals(5, game.score());
 	}
 
 	@Test
-	void tiro1Derribo5Tiro2Derribo3Puntuacion8() throws Exception {
+	void cuadro1_5_3_Puntuacion8() throws Exception {
 		Game game = new Game();
 		game.roll(5);
 		game.roll(3);
@@ -32,67 +32,7 @@ class TestGame {
 	}
 	
 	@Test
-	void cuadro1SpareCuadro2Tiro1Derribo5Puntuacion20() throws Exception {
-		Game game = new Game();
-		game.roll(4);
-		game.roll(6);
-		
-		game.roll(5);
-		
-		assertEquals(20, game.score());
-	}
-	
-	@Test
-	void cuadro1SpareCuadro2Tiro1Derribo8Puntuacion26() throws Exception {
-		Game game = new Game();
-		game.roll(5);
-		game.roll(5);
-		
-		game.roll(8);
-		
-		assertEquals(26, game.score());
-	}
-	
-	@Test
-	void cuadro1SpareCuadro2Tiro1Derribo8Tiro2Derribo1Puntuacion27() throws Exception {
-		Game game = new Game();
-		game.roll(5);
-		game.roll(5);
-		
-		game.roll(8);
-		game.roll(1);
-		
-		assertEquals(27, game.score());
-	}
-	
-	@Test
-	void cuadro1_5_5_spare_cuadro2_4_6_spare_puntuacion24() throws Exception {
-		Game game = new Game();
-		game.roll(5);
-		game.roll(5);
-		
-		game.roll(4);
-		game.roll(6);
-		
-		assertEquals(24, game.score());
-	}
-	
-	@Test
-	void cuadro1_5_5_Spare_Cuadro2_4_6_Spare_Cuadro3_5Puntuacion34() throws Exception {
-		Game game = new Game();
-		game.roll(5);
-		game.roll(5);
-		
-		game.roll(4);
-		game.roll(6);
-		
-		game.roll(5);
-		
-		assertEquals(34, game.score());
-	}
-	
-	@Test
-	void cuadro1_5_4_Cuadro2_6_0_Cuadro3_5_3_Cuadro4_8_2_Cuadro5_4_2Puntuacion43() throws Exception {
+	void cuadro1_5_4_Cuadro2_6_0_Cuadro3_5_3_Cuadro4_8_2_Cuadro5_4_2_Puntuacion43() throws Exception {
 		Game game = new Game();
 		game.roll(5);
 		game.roll(4);
@@ -110,6 +50,123 @@ class TestGame {
 		game.roll(2);
 		
 		assertEquals(43, game.score());
+	}
+	
+	@Test
+	void cuadro1_4_6_Spare_Cuadro2_5_Puntuacion20() throws Exception {
+		Game game = new Game();
+		game.roll(4);
+		game.roll(6);
+		
+		game.roll(5);
+		
+		assertEquals(20, game.score());
+	}
+	
+	@Test
+	void cuadro1_5_5_Spare_Cuadro2_8_Puntuacion26() throws Exception {
+		Game game = new Game();
+		game.roll(5);
+		game.roll(5);
+		
+		game.roll(8);
+		
+		assertEquals(26, game.score());
+	}
+	
+	@Test
+	void cuadro1_5_5_Spare_Cuadro2_8_1_Puntuacion27() throws Exception {
+		Game game = new Game();
+		game.roll(5);
+		game.roll(5);
+		
+		game.roll(8);
+		game.roll(1);
+		
+		assertEquals(27, game.score());
+	}
+	
+	@Test
+	void cuadro1_5_5_Spare_Cuadro2_4_6_Spare_Puntuacion24() throws Exception {
+		Game game = new Game();
+		game.roll(5);
+		game.roll(5);
+		
+		game.roll(4);
+		game.roll(6);
+		
+		assertEquals(24, game.score());
+	}
+	
+	@Test
+	void cuadro1_5_5_Spare_Cuadro2_4_6_Spare_Cuadro3_5_Puntuacion34() throws Exception {
+		Game game = new Game();
+		game.roll(5);
+		game.roll(5);
+		
+		game.roll(4);
+		game.roll(6);
+		
+		game.roll(5);
+		
+		assertEquals(34, game.score());
+	}
+	
+	@Test
+	void cuadro1_0_10_Spare_Cuadro2_4_4_Puntuacion22() throws Exception {
+		Game game = new Game();
+		game.roll(0);
+		game.roll(10);
+		
+		game.roll(4);
+		game.roll(4);
+		
+		assertEquals(22, game.score());
+	}
+
+	@Test
+	void cuadro1_10_Strike_Cuadro2_4_4_Puntuacion26() throws Exception {
+		Game game = new Game();
+		game.roll(10);
+		
+		game.roll(4);
+		game.roll(4);
+		
+		assertEquals(26, game.score());
+	}
+	
+	@Test
+	void cuadro1_10_Strike_Cuadro2_4_Puntuacion18() throws Exception {
+		Game game = new Game();
+		game.roll(10);
+		
+		game.roll(4);
+		
+		assertEquals(18, game.score());
+	}
+	
+	@Test
+	void cuadro1_10_Strike_Cuadro2_10_Strike_Cuadro3_4_Puntuacion42() throws Exception {
+		Game game = new Game();
+		game.roll(10);
+		
+		game.roll(10);
+		
+		game.roll(4);
+		
+		assertEquals(42, game.score());
+	}
+	
+	@Test
+	void cuadro1_10_Strike_Cuadro2_10_Strike_Cuadro3_10_Strike_Puntuacion60() throws Exception {
+		Game game = new Game();
+		game.roll(10);
+		
+		game.roll(10);
+		
+		game.roll(10);
+		
+		assertEquals(60, game.score());
 	}
 	
 	@Test
