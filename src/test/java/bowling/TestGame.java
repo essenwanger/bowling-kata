@@ -170,6 +170,20 @@ class TestGame {
 	}
 	
 	@Test
+	void cuadro1_10_Strike_Cuadro2_10_Strike_Cuadro3_10_Strike_Cuadro4_10_Strike_Puntuacion90() throws Exception {
+		Game game = new Game();
+		game.roll(10);
+		
+		game.roll(10);
+		
+		game.roll(10);
+		
+		game.roll(10);
+		
+		assertEquals(90, game.score());
+	}
+	
+	@Test
 	void derribaMasDe10EsInvalido() {
 		Game game = new Game();
 		try {
