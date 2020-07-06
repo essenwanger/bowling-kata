@@ -20,6 +20,20 @@ public class Game {
 		if(pins>10) {
 			throw new Exception(VALOR_INVALIDO);
 		}
+		
+		if(frames.size()==10 && frameActual.isSpare()) {
+			frameActual.setRollExtraOne(pins);
+		}else if(frames.size()==10 && frameActual.isStrike() && !frameActual.isRollExtraOneExecute()) {
+			frameActual.setRollExtraOne(pins);
+		}else if(frames.size()==10 && frameActual.isStrike() && frameActual.isRollExtraOneExecute()) {
+			frameActual.setRollExtraTwo(pins);
+		}else {
+			rollRegularFrame(pins);
+		}
+		
+	}
+
+	private void rollRegularFrame(int pins) {
 		if(frameActual.isRollTwoExecute() || frameActual.isStrike()) {
 			frameActual = new Frame();
 		}
@@ -36,32 +50,48 @@ public class Game {
 		for (int numberFrame = 0; numberFrame < frames.size(); numberFrame++) {
 			Frame frame = frames.get(numberFrame);
 			score+=frame.totalFrame();
-			calculateStrikeExtraPoints(frame, numberFrame);
 			calculateSpareExtraPoints(frame, numberFrame);
+			calculateStrikeExtraPoints(frame, numberFrame);
 		}
 		return score;
 	}
 
 	private void calculateStrikeExtraPoints(Frame frame, int numberFrame) {
-		calculateStrikeExtraPoints(frame, numberFrame, 0);
-	}
-	
-	private void calculateStrikeExtraPoints(Frame frame, int numberFrame, int numberStrike) {
 		int numberFrameNext = numberFrame + 1;
-		if (frame.isStrike() && frames.size()>numberFrameNext && numberStrike!=2) {
+		if (frame.isStrike() && existFrame(numberFrameNext)) {
 			Frame frameNext = frames.get(numberFrameNext);
 			score+=frameNext.getRollOne();
-			score+=frameNext.getRollTwo();
-			calculateStrikeExtraPoints(frameNext, numberFrameNext, numberStrike+1);
+			int numberFrameNextNext = numberFrameNext + 1;
+			if(frameNext.isStrike() &&  existFrame(numberFrameNextNext)) {
+				Frame frameNextNext = frames.get(numberFrameNextNext);
+				score+=frameNextNext.getRollOne();
+			}else if(frameNext.isStrike() &&  lastFrame(numberFrameNext)) {
+				score+=frameNext.getRollExtraOne();
+			}else {
+				score+=frameNext.getRollTwo();
+			}
+		}else if(frame.isStrike() && lastFrame(numberFrame)) {
+			score+=frame.getRollExtraOne();
+			score+=frame.getRollExtraTwo();
 		}
 	}
 	
 	private void calculateSpareExtraPoints(Frame frame, int numberFrame) {
 		int numberFrameNext = numberFrame + 1;
-		if(frame.isSpare() && frames.size()>numberFrameNext) {
+		if(frame.isSpare() && existFrame(numberFrameNext)) {
 			Frame frameNext = frames.get(numberFrameNext);
 			score+=frameNext.getRollOne();
+		}else if(frame.isSpare() && lastFrame(numberFrame)) {
+			score+=frame.getRollExtraOne();
 		}
+	}
+	
+	private boolean lastFrame(int numberFrame) {
+		return numberFrame == 9;
+	}
+	
+	private boolean existFrame(int numberFrame) {
+		return frames.size()>numberFrame;
 	}
 	
 }

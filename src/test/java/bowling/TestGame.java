@@ -184,6 +184,135 @@ class TestGame {
 	}
 	
 	@Test
+	void cuadro1_10_3_3_Puntuacion60() throws Exception {
+		Game game = new Game();
+		
+		int count = 0;
+		while (count!=10) {
+			game.roll(3);
+			game.roll(3);
+			count++;
+		}
+		
+		assertEquals(60, game.score());
+	}
+	
+	@Test
+	void cuadro1_9_3_3_cuadro10_5_4_Puntuacion63() throws Exception {
+		Game game = new Game();
+		
+		int count = 0;
+		while (count!=9) {
+			game.roll(3);
+			game.roll(3);
+			count++;
+		}
+
+		game.roll(5);
+		game.roll(4);
+		
+		assertEquals(63, game.score());
+	}
+	
+	@Test
+	void cuadro1_10_5_5_Spare_Extra_5_Puntuacion150() throws Exception {
+		Game game = new Game();
+		
+		int count = 0;
+		while (count!=10) {
+			game.roll(5);
+			game.roll(5);
+			count++;
+		}
+
+		game.roll(5);
+		
+		assertEquals(150, game.score());
+	}
+	
+	@Test
+	void cuadro1_9_10_Strike_Cuadro10_5_3_Puntuacion261() throws Exception {
+		Game game = new Game();
+		
+		int count = 0;
+		while (count!=9) {
+			game.roll(10);
+			count++;
+		}
+
+		game.roll(5);
+		game.roll(3);
+		
+		assertEquals(261, game.score());
+	}
+	
+	@Test
+	void cuadro1_9_10_Strike_Cuadro10_4_6_Spare_Extra_5_Puntuacion269() throws Exception {
+		Game game = new Game();
+		
+		int count = 0;
+		while (count!=9) {
+			game.roll(10);
+			count++;
+		}
+
+		game.roll(4);
+		game.roll(6);
+		
+		game.roll(5);
+		
+		assertEquals(269, game.score());
+	}
+	
+	@Test
+	void cuadro1_10_10_Strike_5_5_Puntuacion285() throws Exception {
+		Game game = new Game();
+		
+		int count = 0;
+		while (count!=10) {
+			game.roll(10);
+			count++;
+		}
+		
+		game.roll(5);
+		game.roll(5);
+		
+		assertEquals(285, game.score());
+	}
+	
+	@Test
+	void cuadro1_10_10_Strike_10_5_Puntuacion295() throws Exception {
+		Game game = new Game();
+		
+		int count = 0;
+		while (count!=10) {
+			game.roll(10);
+			count++;
+		}
+		
+		game.roll(10);
+		game.roll(5);
+		
+		assertEquals(295, game.score());
+	}
+	
+	@Test
+	void cuadro1_10_10_Strike_10_10_Puntuacion300() throws Exception {
+		Game game = new Game();
+		
+		int count = 0;
+		while (count!=10) {
+			game.roll(10);
+			count++;
+		}
+		
+		game.roll(10);
+		game.roll(10);
+		
+		assertEquals(300, game.score());
+	}
+	
+	@Test
 	void derribaMasDe10EsInvalido() {
 		Game game = new Game();
 		try {

@@ -4,14 +4,22 @@ public class Frame {
 
 	private int rollOne;
 	private int rollTwo;
+	private int rollExtraOne;
+	private int rollExtraTwo;
 	private boolean rollOneExecute;
 	private boolean rollTwoExecute;
+	private boolean rollExtraOneExecute;
+	private boolean rollExtraTwoExecute;
 	
 	public Frame() {
 		rollOne = 0;
 		rollTwo = 0;
+		rollExtraOne = 0;
+		rollExtraTwo = 0;
 		rollOneExecute = false;
 		rollTwoExecute = false;
+		rollExtraOneExecute = false;
+		rollExtraTwoExecute = false;
 	}
 
 	public int getRollOne() {
@@ -32,12 +40,38 @@ public class Frame {
 		rollTwoExecute = true;
 	}
 
+	public int getRollExtraOne() {
+		return rollExtraOne;
+	}
+
+	public void setRollExtraOne(int rollExtraOne) {
+		this.rollExtraOne = rollExtraOne;
+		rollExtraOneExecute = true;
+	}
+
+	public int getRollExtraTwo() {
+		return rollExtraTwo;
+	}
+
+	public void setRollExtraTwo(int rollExtraTwo) {
+		this.rollExtraTwo = rollExtraTwo;
+		rollExtraTwoExecute = true;
+	}
+
 	public boolean isRollOneExecute() {
 		return rollOneExecute;
 	}
 
 	public boolean isRollTwoExecute() {
 		return rollTwoExecute;
+	}
+	
+	public boolean isRollExtraOneExecute() {
+		return rollExtraOneExecute;
+	}
+
+	public boolean isRollExtraTwoExecute() {
+		return rollExtraTwoExecute;
 	}
 
 	public boolean isStrike() {
